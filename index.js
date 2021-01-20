@@ -19,11 +19,12 @@ var Calculate = /** @class */ (function () {
     this.numberTwo = numberTwo;
   }
   Calculate.prototype.calculation = function (sign) {
+    var resultOperation;
     var result;
-    var message;
     switch (sign) {
       case "+":
-        result = this.numberOne + this.numberTwo;
+        resultOperation = this.numberOne + this.numberTwo;
+        result = resultOperation.toString();
         return [
           '<div class="operador"> <p> ' +
             this.numberOne +
@@ -31,10 +32,11 @@ var Calculate = /** @class */ (function () {
             this.numberTwo +
             ' = </p>\n          <input id="suma"></input><button id="button">Enviar</button></div>',
           result,
-          (message = "Sumar"),
+          "Sumar",
         ];
       case "-":
-        result = this.numberOne - this.numberTwo;
+        resultOperation = this.numberOne - this.numberTwo;
+        result = resultOperation.toString();
         return [
           '<div class="operador"> <p>' +
             this.numberOne +
@@ -42,10 +44,11 @@ var Calculate = /** @class */ (function () {
             this.numberTwo +
             ' = </p>\n          <input id="suma"></input><button id="button">Enviar</button></div>',
           result,
-          (message = "Restar"),
+          "Restar",
         ];
       case "/":
-        result = this.numberOne / this.numberTwo;
+        resultOperation = this.numberOne / this.numberTwo;
+        result = resultOperation.toString();
         return [
           '<div class="operador"> <p> ' +
             this.numberOne +
@@ -53,10 +56,11 @@ var Calculate = /** @class */ (function () {
             this.numberTwo +
             ' = </p>\n          <input id="suma"></input><button id="button">Enviar</button></div>',
           result,
-          (message = "Dividir"),
+          "Dividir",
         ];
       case "x":
-        result = this.numberOne * this.numberTwo;
+        resultOperation = this.numberOne * this.numberTwo;
+        result = resultOperation.toString();
         return [
           '<div class="operador"> <p> ' +
             this.numberOne +
@@ -64,7 +68,7 @@ var Calculate = /** @class */ (function () {
             this.numberTwo +
             ' = </p>\n          <input id="suma"></input><button id="button">Enviar</button></div>',
           result,
-          (message = "Multiplicar"),
+          "Multiplicar",
         ];
     }
   };
@@ -94,7 +98,7 @@ var Operation = /** @class */ (function () {
 function sendValue() {
   var button = document.getElementById("button");
   button.onclick = function () {
-    var num = +document.getElementById("suma").value;
+    var num = document.getElementById("suma").value;
     if (num === op.result) {
       return (document.body.innerHTML = "<h1 class='resultado'>Correcto</h1>");
     } else {

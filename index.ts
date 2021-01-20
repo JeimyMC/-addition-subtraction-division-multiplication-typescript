@@ -1,5 +1,5 @@
 class Buttons {
-  onButton() {
+  onButton(): string {
     return "<div><button id='sumar'>+</button><button id='restar'>-</button><button id='dividir'>/</button><button id='multiplicar'>x</button></div>";
   }
 }
@@ -19,43 +19,47 @@ class Calculate {
     this.numberOne = numberOne;
     this.numberTwo = numberTwo;
   }
-  calculation(sign) {
-    let result: number;
-    let message: string;
+  calculation(sign): Array<string> {
+    let resultOperation: number;
+    let result: string;
+
     switch (sign) {
       case "+":
-        result = this.numberOne + this.numberTwo;
-
+        resultOperation = this.numberOne + this.numberTwo;
+        result = resultOperation.toString();
         return [
           `<div class="operador"> <p> ${this.numberOne} + ${this.numberTwo} = </p>
           <input id="suma"></input><button id="button">Enviar</button></div>`,
           result,
-          (message = "Sumar"),
+          "Sumar",
         ];
 
       case "-":
-        result = this.numberOne - this.numberTwo;
+        resultOperation = this.numberOne - this.numberTwo;
+        result = resultOperation.toString();
         return [
           `<div class="operador"> <p>${this.numberOne} - ${this.numberTwo} = </p>
           <input id="suma"></input><button id="button">Enviar</button></div>`,
           result,
-          (message = "Restar"),
+          "Restar",
         ];
       case "/":
-        result = this.numberOne / this.numberTwo;
+        resultOperation = this.numberOne / this.numberTwo;
+        result = resultOperation.toString();
         return [
           `<div class="operador"> <p> ${this.numberOne} : ${this.numberTwo} = </p>
           <input id="suma"></input><button id="button">Enviar</button></div>`,
           result,
-          (message = "Dividir"),
+          "Dividir",
         ];
       case "x":
-        result = this.numberOne * this.numberTwo;
+        resultOperation = this.numberOne * this.numberTwo;
+        result = resultOperation.toString();
         return [
           `<div class="operador"> <p> ${this.numberOne} x ${this.numberTwo} = </p>
           <input id="suma"></input><button id="button">Enviar</button></div>`,
           result,
-          (message = "Multiplicar"),
+          "Multiplicar",
         ];
     }
   }
@@ -70,7 +74,7 @@ class Operation {
   result = sum.calculation(this.sign)[1];
   constructor(public sign: string) {}
 
-  showOperation() {
+  showOperation(): string {
     return (
       "<div id=section>" +
       "<h1>" +
@@ -86,7 +90,8 @@ function sendValue() {
   const button = document.getElementById("button");
 
   button.onclick = function () {
-    const num: number = +document.getElementById("suma");
+    const num = document.getElementById("suma");
+
     if (num === op.result) {
       return (document.body.innerHTML = "<h1 class='resultado'>Correcto</h1>");
     } else {
